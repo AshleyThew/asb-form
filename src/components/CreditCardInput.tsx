@@ -2,7 +2,11 @@ import { Formik, FormikValues } from 'formik';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
 import * as yup from 'yup';
 
-const CreditCardInput = () => {
+interface FormProps {
+	validateOnMount: boolean;
+}
+
+const CreditCardInput: React.FC<FormProps> = (props) => {
 	const handleSubmit = (values: FormikValues) => {
 		console.log(values);
 	};
@@ -16,12 +20,12 @@ const CreditCardInput = () => {
 
 	return (
 		<Formik
-			validateOnMount
+			validateOnMount={props.validateOnMount}
 			validationSchema={schema}
 			initialValues={{ cardNumber: '', cvc: '', expiryMM: '', expiryYY: '' }}
 			onSubmit={handleSubmit}
 		>
-			{({ handleSubmit, handleChange, values, isValid, errors, isSubmitting}) => (
+			{({ handleSubmit, handleChange, values, isValid, errors, isSubmitting }) => (
 				<Container fluid>
 					<Form noValidate validated={isValid} onSubmit={handleSubmit}>
 						<Row className="justify-content-center">
@@ -30,82 +34,92 @@ const CreditCardInput = () => {
 									<Form.Label>Credit Card Number</Form.Label>
 									<Form.Control
 										required
-                    name='cardNumber'
+										name="cardNumber"
 										type="text"
 										placeholder="Credit Card Number"
 										maxLength={12}
 										pattern="[0-9]*"
-                    onChange={handleChange}
-                    value={values.cardNumber}
-                    isInvalid={!!errors.cardNumber}
+										onChange={handleChange}
+										value={values.cardNumber}
+										isInvalid={!!errors.cardNumber}
 									/>
-                  <Form.Control.Feedback type='invalid'>
-                    {errors.cardNumber}
-                  </Form.Control.Feedback>
+									<Form.Control.Feedback type="invalid">
+										{errors.cardNumber}
+									</Form.Control.Feedback>
 								</Form.Group>
 								<Row>
 									<Form.Group as={Col} xs={3} controlId="validationCVC">
 										<Form.Label>CVC</Form.Label>
 										<Form.Control
 											required
-                      name='cvc'
+											name="cvc"
 											type="text"
 											placeholder="CVC"
 											maxLength={3}
 											pattern="[0-9]*"
-                      onChange={handleChange}
-                      value={values.cvc}
-                      isInvalid={!!errors.cvc}
+											onChange={handleChange}
+											value={values.cvc}
+											isInvalid={!!errors.cvc}
 										/>
-                    <Form.Control.Feedback type='invalid'>
-                      {errors.cvc}
-                    </Form.Control.Feedback>
+										<Form.Control.Feedback type="invalid">
+											{errors.cvc}
+										</Form.Control.Feedback>
 									</Form.Group>
 									<Col xs={7}>
-                    <Row>
-                      <Form.Label>Expiry</Form.Label>
-                      <Form.Group as={Col} xs={4} className="p-0" controlId="validationExpiryMM">
-                        <Form.Control
-                          required
-                          name='expiryMM'
-                          type="text"
-                          placeholder="MM"
-                          maxLength={2}
-                          pattern="[0-9]*"
-                          onChange={handleChange}
-                          value={values.expiryMM}
-                          isInvalid={!!errors.expiryMM}
-                        />
-                        <Form.Control.Feedback type='invalid'>
-                          {errors.expiryMM}
-                        </Form.Control.Feedback>
-                      </Form.Group>
-                      <Form.Group as={Col} xs={4} className="p-0" controlId="validationExpiryYY">
-                        <Form.Control
-                          required
-                          name='expiryYY'
-                          type="text"
-                          placeholder="YY"
-                          maxLength={2}
-                          pattern="[0-9]*"
-                          onChange={handleChange}
-                          value={values.expiryYY}
-                          isInvalid={!!errors.expiryYY}
-                        />
-                        <Form.Control.Feedback type='invalid'>
-                          {errors.expiryYY}
-                        </Form.Control.Feedback>
-                      </Form.Group>
-                    </Row>
+										<Row>
+											<Form.Label>Expiry</Form.Label>
+											<Form.Group
+												as={Col}
+												xs={4}
+												className="p-0"
+												controlId="validationExpiryMM"
+											>
+												<Form.Control
+													required
+													name="expiryMM"
+													type="text"
+													placeholder="MM"
+													maxLength={2}
+													pattern="[0-9]*"
+													onChange={handleChange}
+													value={values.expiryMM}
+													isInvalid={!!errors.expiryMM}
+												/>
+												<Form.Control.Feedback type="invalid">
+													{errors.expiryMM}
+												</Form.Control.Feedback>
+											</Form.Group>
+											<Form.Group
+												as={Col}
+												xs={4}
+												className="p-0"
+												controlId="validationExpiryYY"
+											>
+												<Form.Control
+													required
+													name="expiryYY"
+													type="text"
+													placeholder="YY"
+													maxLength={2}
+													pattern="[0-9]*"
+													onChange={handleChange}
+													value={values.expiryYY}
+													isInvalid={!!errors.expiryYY}
+												/>
+												<Form.Control.Feedback type="invalid">
+													{errors.expiryYY}
+												</Form.Control.Feedback>
+											</Form.Group>
+										</Row>
 									</Col>
 								</Row>
-                <br/>
+								<br />
 								<Row className="justify-content-center">
 									<Button
 										type="submit"
 										className="btn-block"
 										style={{ maxWidth: '400px' }}
-                    disabled={isSubmitting}
+										disabled={isSubmitting}
 									>
 										Submit
 									</Button>

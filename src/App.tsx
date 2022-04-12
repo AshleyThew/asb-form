@@ -11,7 +11,7 @@ function App() {
 	return (
 		<>
 			<Header menu={menu} setMenu={setMenu} title={menu ? 'Menu' : 'Register card form'} />
-			<Container>{menu ? <Menu /> : <CreditCardInput />}</Container>
+			<Container>{menu ? <Menu /> : <CreditCardInput validateOnMount={true}/>}</Container>
 		</>
 	);
 }
