@@ -1,5 +1,14 @@
+body {
+	min-height: 100vh;
+	background-color: #E0E0CE;
+}
+
 .navbar-center {
-  position: absolute;
-  left: 50%;
-  transform: translatex(-50%);
+	position: absolute;
+	left: 50%;
+	transform: translatex(-50%);
+}
+
+.navbar {
+	background-color: #F2AF29;
 }

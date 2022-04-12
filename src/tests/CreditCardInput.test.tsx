@@ -3,6 +3,8 @@ import { act, render, screen, configure, fireEvent } from '@testing-library/reac
 import CreditCardInput from '../components/CreditCardInput';
 import userEvent from '@testing-library/user-event'
 
+// TODO swap away from act as eslint gives errors
+
 configure({testIdAttribute: 'id'})
 
 test('card number validation', async () => {
@@ -50,7 +52,6 @@ test('expiry month validation', async () => {
   expect(valid).not.toBeInTheDocument();
 });
 
-
 test('expiry year validation', async () => {
   render(<CreditCardInput validateOnMount={false}/>);
   await act(async ()=>{
@@ -75,5 +76,4 @@ test('button submit', async() => {
     fireEvent.click(button);
   });
 
-  // TODO find way to test button submitted without errors
 });

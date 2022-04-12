@@ -117,9 +117,16 @@ const CreditCardInput: React.FC<FormProps> = (props) => {
 								<Row className="justify-content-center">
 									<Button
 										type="submit"
+										variant="success"
 										className="btn-block"
 										style={{ maxWidth: '400px' }}
-										disabled={isSubmitting}
+										disabled={
+											isSubmitting ||
+											!!errors.cardNumber ||
+											!!errors.cvc ||
+											!!errors.expiryMM ||
+											!!errors.expiryYY
+										}
 									>
 										Submit
 									</Button>
