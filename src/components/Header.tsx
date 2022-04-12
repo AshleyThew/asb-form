@@ -1,22 +1,23 @@
 import Hamburger from 'hamburger-react';
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { Container, Navbar } from 'react-bootstrap';
 
-const Header = () => {
+interface HeaderProps {
+	menu: boolean;
+	setMenu: Dispatch<SetStateAction<boolean>>;
+	title: string;
+}
 
-  const [menu, setMenu] = useState(false);
-
+const Header: React.FC<HeaderProps> = (props) => {
 	return (
-    <>
-      <Navbar>
-        <Container>
-          <Navbar.Brand onClick={() => setMenu(!menu)}>
-            <Hamburger toggled={menu} toggle={setMenu} />
-          </Navbar.Brand>
-        </Container>
-      </Navbar>
-      {menu && <div></div>}
-    </>
+		<Navbar>
+			<Container fluid className='text-center'>
+				<Hamburger toggled={props.menu} toggle={props.setMenu} />
+				<div className="justify-content-center">
+					<Navbar.Brand href="#home">{props.title}</Navbar.Brand>
+				</div>
+			</Container>
+		</Navbar>
 	);
 };
 
