@@ -11,9 +11,11 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = (props) => {
 	return (
 		<Navbar>
-			<Container fluid className='text-center'>
+			<Container>
 				<Hamburger toggled={props.menu} toggle={props.setMenu} />
-				<div className="justify-content-center">
+			</Container>
+			<Container>
+				<div className="navbar-center">
 					<Navbar.Brand href="#home">{props.title}</Navbar.Brand>
 				</div>
 			</Container>

@@ -23,7 +23,7 @@ const CreditCardInput = () => {
 		>
 			{({ handleSubmit, handleChange, values, isValid, errors, isSubmitting}) => (
 				<Container fluid>
-					<Form noValidate onSubmit={handleSubmit}>
+					<Form noValidate validated={isValid} onSubmit={handleSubmit}>
 						<Row className="justify-content-center">
 							<Col xs={10} md={6} xl={4}>
 								<Form.Group as={Col} controlId="validationCreditCardNumber">
@@ -36,6 +36,7 @@ const CreditCardInput = () => {
 										maxLength={12}
 										pattern="[0-9]*"
                     onChange={handleChange}
+                    value={values.cardNumber}
                     isInvalid={!!errors.cardNumber}
 									/>
                   <Form.Control.Feedback type='invalid'>
@@ -53,6 +54,7 @@ const CreditCardInput = () => {
 											maxLength={3}
 											pattern="[0-9]*"
                       onChange={handleChange}
+                      value={values.cvc}
                       isInvalid={!!errors.cvc}
 										/>
                     <Form.Control.Feedback type='invalid'>
@@ -71,6 +73,7 @@ const CreditCardInput = () => {
                           maxLength={2}
                           pattern="[0-9]*"
                           onChange={handleChange}
+                          value={values.expiryMM}
                           isInvalid={!!errors.expiryMM}
                         />
                         <Form.Control.Feedback type='invalid'>
@@ -86,6 +89,7 @@ const CreditCardInput = () => {
                           maxLength={2}
                           pattern="[0-9]*"
                           onChange={handleChange}
+                          value={values.expiryYY}
                           isInvalid={!!errors.expiryYY}
                         />
                         <Form.Control.Feedback type='invalid'>
